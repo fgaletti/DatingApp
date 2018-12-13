@@ -9,6 +9,7 @@ import { NavComponent } from './nav/nav.component';
 import { AuthService } from './_services/Auth.service';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { ErrorInterceptorProvider } from './_services/error.interceptor';
 
 
 
@@ -27,7 +28,8 @@ import { RegisterComponent } from './register/register.component';
       ReactiveFormsModule
    ],
    providers: [
-      AuthService
+      AuthService,
+      ErrorInterceptorProvider
    ],
    bootstrap: [
       AppComponent

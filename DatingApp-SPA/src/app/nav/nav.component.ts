@@ -18,8 +18,9 @@ export class NavComponent implements OnInit {
   login() {
     this.authService.login(this.model).subscribe(next => {
       console.log('logged in successfully');
-    }, () => {
-      console.log('Failed to loginsss');
+    // tslint:disable-next-line:no-shadowed-variable
+    }, error => {
+      console.log(error); //  'Failed to loginsss');
     }
     );
   }
