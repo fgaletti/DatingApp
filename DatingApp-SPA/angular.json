@@ -77,7 +77,7 @@
               "src/styles.css"
             ],
             "scripts": [
-              "node_modules/alertifyjs/build/alertify.min.js"
+             
             ],
             "assets": [
               "src/favicon.ico",
