@@ -1,0 +1,48 @@
+import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
+import { User } from 'src/app/_models/User';
+import { ActivatedRoute } from '@angular/router';
+import { AlertifyService } from 'src/app/_services/alertify.service';
+import { NgForm } from '@angular/forms';
+import { UserService } from 'src/app/_services/User.service';
+import { AuthService } from 'src/app/_services/Auth.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+
+@Component({
+  selector: 'app-member-edit',
+  templateUrl: './member-edit.component.html',
+  styleUrls: ['./member-edit.component.css']
+})
+export class MemberEditComponent implements OnInit {
+@ViewChild('editForm') editForm: NgForm; //
+user: User; // we need to move this user UP AVOBE OUR hostlistener
+
+@HostListener('window:beforeunload', ['$event'])
+unloadNotification($event: any) {
+  if (this.editForm.dirty) {
+    $event.returnValue = true;
+  }
+}
+
+  constructor(private route: ActivatedRoute, private alertify: AlertifyService,
+    private userService: UserService,
+    private authService: AuthService // 99  WE NEED THE ID FROM TOKEN
+    ) { }
+
+  ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.user = data['user'];
+    });
+  }
+
+  updateUser() {
+    this.userService.updateUser(this.authService.decodedToken.nameid, this.user)
+    .subscribe (next => {
+        this.alertify.success('uopdated succesufy');
+    this.editForm.reset(this.user);
+    }, error => {
+      this.alertify.message(error);
+    });
+  }
+
+}
