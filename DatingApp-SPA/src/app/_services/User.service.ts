@@ -32,4 +32,17 @@ updateUser(id: number, user: User) {
   return this.http.put(this.baseUrl + 'users/' + id, user);
 }
 
+// 111
+setMainPhoto (userId: number, id: number ) {
+  // http://localhost:5000/api/users/3/photos/14/SetMainPhoto
+  return this.http.post(this.baseUrl + 'users/' + userId + '/photos/' + id + '/SetMainPhoto', {} ) ;
+  // because is a post request we are required to send up something in the body
+  // we are sending {}, empty objects to satisfy
+}
+
+deletePhoto(userId: number, id: number) {
+  // http://localhost:5000/api/users/3/photos/14
+  return this.http.delete(this.baseUrl + 'users/' + userId + '/photos/' + id);
+}
+
 }

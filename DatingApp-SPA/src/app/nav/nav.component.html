@@ -20,6 +20,14 @@
       </ul>
   
       <div *ngIf="loggedIn()" class="dropdown" dropdown>
+        <span class="mr-1">
+          <!-- 114 cap -->
+          <!--  <img src="{{authService.currentUser.photoUrl}}" alt="" class="img-top">-->
+
+         <!-- 116 now we use the property of navBar -->
+          <img src="{{photoUrl}}" alt="" class="img-top">
+
+        </span>
         <a class="dropdown-toggle text-light" dropdownToggle  >
           Welcome {{authService.decodedToken?.unique_name | titlecase}}
         </a>

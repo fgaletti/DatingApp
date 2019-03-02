@@ -16,6 +16,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 export class MemberEditComponent implements OnInit {
 @ViewChild('editForm') editForm: NgForm; //
 user: User; // we need to move this user UP AVOBE OUR hostlistener
+photoUrl: string; // 116 used to subscribe
 
 @HostListener('window:beforeunload', ['$event'])
 unloadNotification($event: any) {
@@ -33,16 +34,23 @@ unloadNotification($event: any) {
     this.route.data.subscribe(data => {
       this.user = data['user'];
     });
+
+    this.authService.photoUrl.subscribe(photoUrl => this.photoUrl = photoUrl); // 116 subscribe to authservice
   }
 
   updateUser() {
     this.userService.updateUser(this.authService.decodedToken.nameid, this.user)
     .subscribe (next => {
-        this.alertify.success('uopdated succesufy');
+        this.alertify.success('updated succesufy');
     this.editForm.reset(this.user);
     }, error => {
       this.alertify.message(error);
     });
+  }
+
+  // 113 come from HTML
+  updateMainPhoto(photoUrl) {
+    this.user.photoUrl = photoUrl;
   }
 
 }

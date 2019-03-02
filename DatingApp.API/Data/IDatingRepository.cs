@@ -4,6 +4,8 @@ using DatingApp.API.Models;
 
 namespace DatingApp.API.Data
 {
+
+    // implemented un DATINGREPOSITORY
     public interface IDatingRepository
     {
          void Add<T>(T entity) where T: class;
@@ -11,6 +13,7 @@ namespace DatingApp.API.Data
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
-
+        Task<Photo> GetPhoto(int id);
+        Task<Photo> GetMainPhotoForUser(int userId);   // cap 110 
     }
 }

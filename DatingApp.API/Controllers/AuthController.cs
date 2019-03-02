@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using DatingApp.API.Data;
 using DatingApp.API.Dtos;
 using DatingApp.API.Models;
@@ -17,15 +18,17 @@ namespace DatingApp.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository _repo;
+        private readonly IMapper _mapper; // 114 inizialice 
 
-       
-                public IConfiguration _config { get; }
+        public IConfiguration _config { get; }
 
         //injects repository into this, para eso se crea el constructor        
-        public AuthController(IAuthRepository repo, IConfiguration config)
+        public AuthController(IAuthRepository repo, IConfiguration config,
+            IMapper  mapper) // 114 add mapper 
         {
             _repo = repo;
             _config = config;
+            _mapper = mapper;  // 114 add mapper 
         }
 
         [HttpPost("register")]
@@ -90,8 +93,17 @@ namespace DatingApp.API.Controllers
                 var tokenHandler = new JwtSecurityTokenHandler();
 
                 var token = tokenHandler.CreateToken(tokenDescriptor);
+                
+                // 114  we dont want to use userFromRepo becase has passwords so
+                // we use UserForListDto better
+                var user = _mapper.Map<UserForListDto>(userFromRepo);
+                //var user = _mapper.Map<UserForListDto>(_repo.GetUser(userFromRepo.Id);
+                // var user = await _repo.GetUser(id);
+
                 return Ok(
-                    new { token =  tokenHandler.WriteToken(token)}
+                    new { token =  tokenHandler.WriteToken(token), 
+                        user // 114 add new parameter
+                    }
                 );
            
            /* 

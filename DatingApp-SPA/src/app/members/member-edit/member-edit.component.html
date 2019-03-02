@@ -14,7 +14,12 @@
     <div class="row">
       <div class="col-sm-4">
         <div class="card">
-          <img class="card-img-top img-thumbnail" src="{{user?.photoUrl}}" alt="{{user?.knownAs}}">
+           <!-- before 116 -->
+          <!--img class="card-img-top img-thumbnail" src="{{user?.photoUrl}}" alt="{{user?.knownAs}}" -->
+
+          <!-- 116 we use the property photoUrl which we are subscribed -->
+          <img class="card-img-top img-thumbnail" src="{{photoUrl}}" alt="{{user?.knownAs}}">
+
           <div class="card-body">
             <div>
               <strong>Location:</strong>
@@ -65,7 +70,10 @@
                   
                 </tab>
                 <tab heading="Edit Photos">
-                  <p>phot edit willl</p>
+                  <!-- call to a child controller and pass [photos]="user.photos"-->
+                 <app-photo-editor [photos]="user.photos"
+                    (getMemberPhotoChange)="updateMainPhoto($event)"> </app-photo-editor>
+                    <!-- 113 ADD  getMemberPhotoChange-->
                 </tab>
               
               

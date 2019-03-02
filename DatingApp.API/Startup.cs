@@ -42,6 +42,7 @@ namespace Dating.API
                  Newtonsoft.Json.ReferenceLoopHandling.Ignore; // IGNORE : Self referencing loop detected for property 
              });
             services.AddCors();
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings")); // cap 103 upload images
             services.AddAutoMapper(); //added
             services.AddTransient<Seed>(); //add seed databdse
             services.AddScoped<IDatingRepository, DatingRepository>();
@@ -87,6 +88,7 @@ namespace Dating.API
            // app.UseHttpsRedirection();
            //   seeder.SeedUsers(); // 
             app.UseCors( x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            // AllowCredentials(). —> problem’s,
             app.UseAuthentication();
             app.UseMvc();
         }
