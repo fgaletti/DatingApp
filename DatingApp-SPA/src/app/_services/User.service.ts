@@ -40,6 +40,7 @@ setMainPhoto (userId: number, id: number ) {
   // we are sending {}, empty objects to satisfy
 }
 
+// 118 cap
 deletePhoto(userId: number, id: number) {
   // http://localhost:5000/api/users/3/photos/14
   return this.http.delete(this.baseUrl + 'users/' + userId + '/photos/' + id);

@@ -18,7 +18,7 @@
           <!--img class="card-img-top img-thumbnail" src="{{user?.photoUrl}}" alt="{{user?.knownAs}}" -->
 
           <!-- 116 we use the property photoUrl which we are subscribed -->
-          <img class="card-img-top img-thumbnail" src="{{photoUrl}}" alt="{{user?.knownAs}}">
+          <img class="card-img-top img-thumbnail" src="{{photoUrl || '../../../assets/user.png' }}" alt="{{user?.knownAs}}">
 
           <div class="card-body">
             <div>

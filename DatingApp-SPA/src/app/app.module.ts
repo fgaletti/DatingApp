@@ -17,7 +17,7 @@ import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { AlertifyService } from './_services/alertify.service';
-import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -56,8 +56,9 @@ export function tokenGetter() {
       BrowserModule,
       HttpClientModule,
       FormsModule,
-      ReactiveFormsModule,
+      ReactiveFormsModule, // 121 ? se habia agragado solo antes
       BsDropdownModule.forRoot(),
+      BsDatepickerModule.forRoot(), // 127
       TabsModule.forRoot(), // cap. 89
       RouterModule.forRoot(appRoutes),
       NgxGalleryModule, // cap 91
