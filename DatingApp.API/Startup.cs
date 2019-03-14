@@ -58,6 +58,8 @@ namespace Dating.API
                     ValidateAudience = false    
                 };
             });
+
+            services.AddScoped<LogUserActivity>(); // 134 add log , action filter
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

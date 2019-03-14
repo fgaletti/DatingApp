@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NgxGalleryModule } from 'ngx-gallery';
 import { FileUploadModule } from 'ng2-file-upload';
+import {TimeAgoPipe} from 'time-ago-pipe'; // 133
 
 // TOP SECTION
 
@@ -50,7 +51,8 @@ export function tokenGetter() {
       MemberCardComponent,
       MemberDetailComponent, // add manually because it is inside a folder
       MemberEditComponent,
-      PhotoEditorComponent // cap . 106
+      PhotoEditorComponent, // cap . 106
+      TimeAgoPipe // 133
    ],
    imports: [
       BrowserModule,
